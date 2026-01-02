@@ -1,0 +1,48 @@
+provider "aws" {
+  access_key = "test"
+  region     = "us-east-1"
+  secret_key = "test"
+
+  s3_use_path_style           = true
+  skip_credentials_validation = true
+  skip_metadata_api_check     = true
+  skip_requesting_account_id  = true
+
+  endpoints {
+    apigateway = "http://localhost:4566"
+    cloudwatch = "http://localhost:4566"
+    dynamodb   = "http://localhost:4566"
+    ec2        = "http://localhost:4566"
+    iam        = "http://localhost:4566"
+    lambda     = "http://localhost:4566"
+    logs       = "http://localhost:4566"
+    s3         = "http://localhost:4566"
+    s3control  = "http://localhost:4566"
+    sns        = "http://localhost:4566"
+    sqs        = "http://localhost:4566"
+    sts        = "http://localhost:4566"
+  }
+}
+
+variable "departments" {
+  default = {
+    finance   = "high"
+    marketing = "medium"
+    eng       = "low"
+  }
+}
+
+resource "aws_s3_bucket" "dept_buckets" {
+  for_each = var.departments
+
+  bucket = "company-${each.key}-storage"
+  
+  tags = {
+    Department = each.key
+    Priority   = each.value
+  }
+}
+
+output "bucket_names" {
+  value = [for b in aws_s3_bucket.dept_buckets : "${b.tags["Department"]}: ${b.bucket}"]
+}
