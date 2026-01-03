@@ -1,48 +1,24 @@
-provider "aws" {
-  access_key = "test"
-  region     = "us-east-1"
-  secret_key = "test"
-
-  s3_use_path_style           = true
-  skip_credentials_validation = true
-  skip_metadata_api_check     = true
-  skip_requesting_account_id  = true
-
-  endpoints {
-    apigateway = "http://localhost:4566"
-    cloudwatch = "http://localhost:4566"
-    dynamodb   = "http://localhost:4566"
-    ec2        = "http://localhost:4566"
-    iam        = "http://localhost:4566"
-    lambda     = "http://localhost:4566"
-    logs       = "http://localhost:4566"
-    s3         = "http://localhost:4566"
-    s3control  = "http://localhost:4566"
-    sns        = "http://localhost:4566"
-    sqs        = "http://localhost:4566"
-    sts        = "http://localhost:4566"
-  }
-}
-
-variable "departments" {
-  default = {
-    finance   = "high"
-    marketing = "medium"
-    eng       = "low"
-  }
-}
-
-resource "aws_s3_bucket" "dept_buckets" {
-  for_each = var.departments
-
-  bucket = "company-${each.key}-storage"
-  
+resource "aws_s3_bucket" "project_bucket" {
+  bucket = var.project_name
   tags = {
-    Department = each.key
-    Priority   = each.value
+    Environment = var.environment
   }
 }
 
-output "bucket_names" {
-  value = [for b in aws_s3_bucket.dept_buckets : "${b.tags["Department"]}: ${b.bucket}"]
+resource "aws_security_group" "app-sg" {
+  name = "app-sg"
+
+  dynamic "ingress" {
+    for_each = var.ingress_ports
+    content {
+      from_port   = ingress.value.port
+      to_port     = ingress.value.port
+      protocol    = ingress.value.protocol
+      cidr_blocks = ["0.0.0.0/0"]
+    }
+  }
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
