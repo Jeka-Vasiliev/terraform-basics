@@ -9,6 +9,6 @@ output "subnet_arn" {
 }
 
 output "app_sg_id" {
-  value       = aws_security_group.app-sg.id
+  value       = aws_security_group.app_sg.id
   description = "The ID of the application security group"
 }
