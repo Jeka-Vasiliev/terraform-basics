@@ -12,7 +12,7 @@ resource "aws_subnet" "public" {
 }
 
 resource "aws_security_group" "app_sg" {
-  name = "app-sg"
+  name   = "app-sg"
   vpc_id = data.aws_vpc.default.id
 
   dynamic "ingress" {

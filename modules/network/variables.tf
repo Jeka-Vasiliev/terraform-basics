@@ -7,8 +7,8 @@ variable "env" {
 }
 
 variable "ingress_ports" {
-    type = map(object({
-        port = string
-        protocol = string
-    }))
+  type = map(object({
+    port     = string
+    protocol = string
+  }))
 }

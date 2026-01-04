@@ -1,20 +1,20 @@
 variable "project_name" {
-  type = string
+  type    = string
   default = "my-cool-project-data"
 }
 
 variable "environment" {
-  type = string
+  type    = string
   default = "dev"
 }
 
 variable "ingress_ports" {
-    type = map(object({
-        port = string
-        protocol = string
-    }))
-    default = {
-        http  = { port = "80", protocol = "tcp" }
-        https = { port = "443", protocol = "tcp" }
-    }
+  type = map(object({
+    port     = string
+    protocol = string
+  }))
+  default = {
+    http  = { port = "80", protocol = "tcp" }
+    https = { port = "443", protocol = "tcp" }
+  }
 }

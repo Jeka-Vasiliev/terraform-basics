@@ -13,8 +13,8 @@ resource "aws_s3_bucket" "logs_bucket" {
 }
 
 module "network_dev" {
-  source      = "./modules/network"
-  env = "development"
+  source            = "./modules/network"
+  env               = "development"
   subnet_cidr_block = 6
-  ingress_ports = var.ingress_ports
+  ingress_ports     = var.ingress_ports
 }
