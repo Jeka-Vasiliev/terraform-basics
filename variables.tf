@@ -18,3 +18,8 @@ variable "ingress_ports" {
     https = { port = "443", protocol = "tcp" }
   }
 }
+
+variable "aws_url" {
+  type    = string
+  default = "http://localhost:4566"
+}

@@ -9,17 +9,17 @@ provider "aws" {
   skip_requesting_account_id  = true
 
   endpoints {
-    apigateway = "http://localhost:4566"
-    cloudwatch = "http://localhost:4566"
-    dynamodb   = "http://localhost:4566"
-    ec2        = "http://localhost:4566"
-    iam        = "http://localhost:4566"
-    lambda     = "http://localhost:4566"
-    logs       = "http://localhost:4566"
-    s3         = "http://localhost:4566"
-    s3control  = "http://localhost:4566"
-    sns        = "http://localhost:4566"
-    sqs        = "http://localhost:4566"
-    sts        = "http://localhost:4566"
+    apigateway = var.aws_url
+    cloudwatch = var.aws_url
+    dynamodb   = var.aws_url
+    ec2        = var.aws_url
+    iam        = var.aws_url
+    lambda     = var.aws_url
+    logs       = var.aws_url
+    s3         = var.aws_url
+    s3control  = var.aws_url
+    sns        = var.aws_url
+    sqs        = var.aws_url
+    sts        = var.aws_url
   }
 }
