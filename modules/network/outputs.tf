@@ -1,14 +1,14 @@
 output "subnet_id" {
-  value       = module.network_dev.subnet_id
+  value       = aws_subnet.public.id
   description = "The ID of the public subnet"
 }
 
 output "subnet_arn" {
-  value       = module.network_dev.subnet_arn
+  value       = aws_subnet.public.arn
   description = "The ARN of the public subnet"
 }
 
 output "app_sg_id" {
-  value       = module.network_dev.app_sg_id
+  value       = aws_security_group.app-sg.id
   description = "The ID of the application security group"
 }
