@@ -5,6 +5,14 @@ resource "aws_s3_bucket" "project_bucket" {
   }
 }
 
+resource "aws_s3_bucket" "logs_bucket" {
+  bucket = "${var.project_name}-logs"
+  depends_on = [
+    aws_s3_bucket.project_bucket
+  ]
+}
+
+
 resource "aws_security_group" "app-sg" {
   name = "app-sg"
   vpc_id = data.aws_vpc.default.id
