@@ -7,6 +7,7 @@ resource "aws_s3_bucket" "project_bucket" {
 
 resource "aws_security_group" "app-sg" {
   name = "app-sg"
+  vpc_id = data.aws_vpc.default.id
 
   dynamic "ingress" {
     for_each = var.ingress_ports
@@ -20,5 +21,18 @@ resource "aws_security_group" "app-sg" {
 
   lifecycle {
     create_before_destroy = true
+  }
+}
+
+data "aws_vpc" "default" {
+  default = true
+}
+
+resource "aws_subnet" "public" {
+  vpc_id     = data.aws_vpc.default.id
+  cidr_block = cidrsubnet(data.aws_vpc.default.cidr_block, 4, 6)
+
+  tags = {
+    Name = "HelloWorld-Subnet"
   }
 }
