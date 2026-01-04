@@ -4,7 +4,7 @@ data "aws_vpc" "default" {
 
 resource "aws_subnet" "public" {
   vpc_id     = data.aws_vpc.default.id
-  cidr_block = cidrsubnet(data.aws_vpc.default.cidr_block, var.subnet_cidr_block, 6)
+  cidr_block = cidrsubnet(data.aws_vpc.default.cidr_block, var.subnet_cidr_block_newbits, 6)
 
   tags = {
     Name = "${var.env}-Subnet"

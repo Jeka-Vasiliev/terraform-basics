@@ -30,8 +30,8 @@ resource "aws_s3_bucket" "logs_bucket" {
 }
 
 module "network_dev" {
-  source            = "./modules/network"
-  env               = "development"
-  subnet_cidr_block = 6
-  ingress_ports     = var.ingress_ports
+  source                    = "./modules/network"
+  env                       = "development"
+  subnet_cidr_block_newbits = 4
+  ingress_ports             = var.ingress_ports
 }

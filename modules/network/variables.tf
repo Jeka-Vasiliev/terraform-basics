@@ -1,5 +1,5 @@
-variable "subnet_cidr_block" {
-  type = string
+variable "subnet_cidr_block_newbits" {
+  type = number
 }
 
 variable "env" {
