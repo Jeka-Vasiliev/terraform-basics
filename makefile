@@ -8,8 +8,8 @@ dev:
 init:
 	$(AWS_CREDS) terraform init
 
-plan:
-	$(AWS_CREDS) terraform plan
+plan-dev:
+	$(AWS_CREDS) terraform plan -var-file=dev.tfvars
 
-apply:
-	$(AWS_CREDS) terraform apply
+apply-dev:
+	$(AWS_CREDS) terraform apply -var-file=dev.tfvars -auto-approve
