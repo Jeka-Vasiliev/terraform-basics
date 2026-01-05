@@ -16,14 +16,14 @@ terraform {
 }
 
 resource "aws_s3_bucket" "project_bucket" {
-  bucket = var.project_name
+  bucket = "${terraform.workspace}-${var.project_name}"
   tags = {
-    Environment = var.environment
+    Environment = terraform.workspace
   }
 }
 
 resource "aws_s3_bucket" "logs_bucket" {
-  bucket = "${var.project_name}-logs"
+  bucket = "${terraform.workspace}-${var.project_name}-logs"
   depends_on = [
     aws_s3_bucket.project_bucket
   ]
