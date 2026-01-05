@@ -3,11 +3,6 @@ variable "project_name" {
   default = "my-cool-project-data"
 }
 
-variable "environment" {
-  type    = string
-  default = "dev"
-}
-
 variable "ingress_ports" {
   type = map(object({
     port     = string
