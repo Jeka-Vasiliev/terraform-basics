@@ -17,7 +17,7 @@ terraform {
 
 resource "aws_s3_bucket" "project_bucket" {
   bucket        = "${terraform.workspace}-${var.project_name}"
-  force_destroy = var.bucket_force_destroy
+  force_destroy = local.current_env.bucket_force_destroy
 
   tags = {
     Environment = terraform.workspace
@@ -26,7 +26,7 @@ resource "aws_s3_bucket" "project_bucket" {
 
 resource "aws_s3_bucket" "logs_bucket" {
   bucket        = "${terraform.workspace}-${var.project_name}-logs"
-  force_destroy = var.bucket_force_destroy
+  force_destroy = local.current_env.bucket_force_destroy
 
   depends_on = [
     aws_s3_bucket.project_bucket
