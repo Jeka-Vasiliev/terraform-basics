@@ -1,1 +1,0 @@
-bucket_force_destroy = true
