@@ -7,8 +7,6 @@ variable "env" {
 }
 
 variable "ingress_ports" {
-  type = map(object({
-    port     = string
-    protocol = string
-  }))
+  type    = list(number)
+  default = [80]
 }
