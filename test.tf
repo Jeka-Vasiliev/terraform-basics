@@ -11,6 +11,6 @@ provider "mycloud" {
 }
 
 resource "mycloud_project" "demo" {
-  name        = "Terraform Power"
+  name        = "New Powerful Name"
   description = "Created by my own provider!"
 }
