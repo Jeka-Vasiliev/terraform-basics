@@ -11,6 +11,6 @@ provider "mycloud" {
 }
 
 resource "mycloud_project" "demo" {
-  name        = "New Powerful Name"
+  name        = "Test Project from Framework"
   description = "Created by my own provider!"
 }
